@@ -1,0 +1,49 @@
+---
+- name: add 10gen repo file
+  become: yes
+  template: src=repo.j2 dest=/etc/yum.repos.d/10gen.repo
+  tags: mongodb
+
+- name: install mongodb
+  become: yes 
+  yum: name=mongo-10gen-server state=present
+  tags: mongodb
+
+- name: configure mongodb
+  become: yes
+  template: src=mongod.conf.j2 dest=/etc/mongod.conf
+  tags: mongodb
+
+- name: Create necessary directory
+  become: yes
+  file:
+   path: "{{ mongodb.dbpath }}"
+   state: directory
+   mode: 0755
+   owner: mongod
+   group: mongod
+
+- name: Create necessary directory1
+  become: yes
+  file:
+   path: "{{ mongodb.logpath }}"
+   state: directory
+   mode: 0755
+   owner: mongod
+   group: mongod
+
+- name: Create necessary directory2
+  become: yes
+  file:
+   path: "{{ mongodb.pidpath }}"
+   state: directory
+   mode: 0755
+   owner: mongod
+   group: mongod
+
+
+- name: run mongodb
+  become: yes
+  service: name=mongod state=started enabled=yes
+  tags: mongodb
+

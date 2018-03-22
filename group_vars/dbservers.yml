@@ -1,0 +1,3 @@
+---
+mongodb:
+ - dbpath: /var/lib/mongo

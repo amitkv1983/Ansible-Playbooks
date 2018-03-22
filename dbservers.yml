@@ -1,0 +1,9 @@
+---
+- hosts: dbservers
+  roles:
+  - role: mongodb      
+  vars:
+   mongodb:
+    dbpath: /var/lib/mongo
+    logpath: /var/log/mongodb
+    pidpath: /var/run/mongodb
