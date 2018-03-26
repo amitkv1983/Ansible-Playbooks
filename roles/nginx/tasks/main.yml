@@ -7,3 +7,9 @@
   copy: src=nginx.conf dest=/etc/nginx/nginx.conf
   notify: restart nginx
   become: true
+
+- name: insert firewalld rule for nginx http port
+  firewalld: port=80/tcp permanent=true state=enabled immediate=yes
+  when: "ansible_os_family == 'RedHat' and ansible_distribution_major_version == '7'"
+  become: true
+
