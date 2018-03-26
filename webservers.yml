@@ -1,0 +1,10 @@
+---
+- hosts: webservers
+  roles:
+  - role: nginx
+#  vars:
+#   mongodb:
+#    dbpath: /var/lib/mongo
+#    logpath: /var/log/mongodb
+#    pidpath: /var/run/mongodb
+#

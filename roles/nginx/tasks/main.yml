@@ -1,0 +1,9 @@
+---
+- name: Install Nginx
+  yum: name=nginx state=present
+  become: true
+
+- name: Copy configuration file
+  copy: src=nginx.conf dest=/etc/nginx/nginx.conf
+  notify: restart nginx
+  become: true
