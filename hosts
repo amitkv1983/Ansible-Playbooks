@@ -1,2 +1,6 @@
 [dbservers]
 localhost
+[webservers]
+localhost
+[appservers]
+localhost
